@@ -2,6 +2,7 @@ package com.sparta.week_05.controller;
 
 
 import com.sparta.week_05.dto.RestaurantRequestDto;
+import com.sparta.week_05.dto.RestaurantResponseDto;
 import com.sparta.week_05.model.Restaurant;
 import com.sparta.week_05.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class RestaurantController {
 
     // 음식점 조회
     @GetMapping("/restaurants")
-    public List<Restaurant> readRestaurant() {
+    public List<RestaurantResponseDto> readRestaurant() {
         return restaurantService.read();
     }
 

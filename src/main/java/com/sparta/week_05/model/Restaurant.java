@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,6 +25,8 @@ public class Restaurant {
     // 기본 배달료
     @Column(nullable = false)
     private int deliveryFee;
+    @OneToMany(mappedBy = "restaurant")
+    private List<Food> foods = new ArrayList<>();
 
 
     public Restaurant(RestaurantRequestDto requestDto) {

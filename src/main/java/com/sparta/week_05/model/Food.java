@@ -26,6 +26,10 @@ public class Food {
     @JsonIgnore
     private Long restaurantId;
 
+    @ManyToOne
+    @JoinColumn(name = "RESTAURANT_NUMBER")
+    private Restaurant restaurant;
+
 
         public Food(FoodRequestDto requestDto, Long restaurantId) {
         this.name = requestDto.getName();

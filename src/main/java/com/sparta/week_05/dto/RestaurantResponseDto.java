@@ -1,14 +1,14 @@
 package com.sparta.week_05.dto;
 
-
-import com.sparta.week_05.model.Restaurant;
 import lombok.Getter;
-
-import java.util.List;
+import lombok.Setter;
 
 @Getter
-public class RestaurantRequestDto {
+@Setter
+public class RestaurantResponseDto {
+    private Long id;
     private String name;
     private int minOrderPrice;
     private int deliveryFee;
+
 }
