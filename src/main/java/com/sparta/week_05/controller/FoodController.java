@@ -2,6 +2,7 @@ package com.sparta.week_05.controller;
 
 
 import com.sparta.week_05.dto.FoodRequestDto;
+import com.sparta.week_05.dto.FoodResponseDto;
 import com.sparta.week_05.model.Food;
 import com.sparta.week_05.service.FoodService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,8 @@ public class FoodController {
     }
 
     @GetMapping("/restaurant/{restaurantId}/foods")
-    public List<Food> readFoods(@PathVariable Long restaurantId) {
+    public List<FoodResponseDto> readFoods(@PathVariable Long restaurantId) {
+
         return foodService.read(restaurantId);
     }
 

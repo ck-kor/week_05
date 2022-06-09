@@ -1,20 +1,24 @@
 package com.sparta.week_05.service;
 
 import com.sparta.week_05.dto.FoodRequestDto;
+import com.sparta.week_05.dto.FoodResponseDto;
 import com.sparta.week_05.model.Food;
 import com.sparta.week_05.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class FoodService {
 
     private final FoodRepository foodRepository;
+    private final ModelMapper modelMapper;
 
     @Transactional
     public void add(Long restaurantId, List<FoodRequestDto> requestDto) {
@@ -52,7 +56,9 @@ public class FoodService {
 //        return "메뉴 등록 성공";
     }
 
-    public List<Food> read(Long restaurantId) {
-        return foodRepository.findAllByRestaurantId(restaurantId);
+    public List<FoodResponseDto> read(Long restaurantId) {
+        return foodRepository.findAllByRestaurantId(restaurantId).stream()
+                .map(list -> modelMapper.map(list, FoodResponseDto.class))
+                .collect(Collectors.toList());
     }
 }

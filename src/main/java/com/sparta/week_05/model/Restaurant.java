@@ -4,6 +4,7 @@ package com.sparta.week_05.model;
 import com.sparta.week_05.dto.RestaurantRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Restaurant {
     @Id
@@ -27,6 +29,11 @@ public class Restaurant {
     private int deliveryFee;
     @OneToMany(mappedBy = "restaurant")
     private List<Food> foods = new ArrayList<>();
+
+    public void setFoods(Food foo) {
+        foo.setRestaurant(this);
+        this.foods.add(foo);
+    }
 
 
     public Restaurant(RestaurantRequestDto requestDto) {
